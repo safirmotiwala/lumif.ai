@@ -15,6 +15,6 @@ class Settings(BaseSettings):
     GRAPH_RECURSION_LIMIT: int = 40
     MCP_CONFIG_FILE: str = "./mcp.json"
     OPENAI_API_KEY: str = ""
-    GOOGLE_API_KEY: str = "AIzaSyCeLhb-CAo1ONT6n6SdZ0OQczfr2UV-wWg"
+    GOOGLE_API_KEY: str = ""
     
 settings = Settings()
