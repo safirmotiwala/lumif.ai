@@ -21,7 +21,8 @@ Lumif.ai MCP Server Management Agent Assignment
    GOOGLE_API_KEY=
    LANGSMITH_API_KEY=
    ```
-5. Run the backend server
+5. Add Bright Data token in mcp.json file (TODO: Move this to db)
+6. Run the backend server
    ```
    uvicorn main:app --reload
    ```
