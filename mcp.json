@@ -1,0 +1,29 @@
+{
+    "mcpServers": {
+        "deploy-mcp": {
+            "command": "python",
+            "args": [
+                "./mcp_server.py"
+            ],
+            "transport": "stdio"
+        },
+        "Bright Data": {
+            "env": {
+                "API_TOKEN": "af5b01cd523172baa01e3789117616daa6c59c67a8bd37095cd5d04c82437a2b",
+                "PATH": "/Users/safirmotiwala/Desktop/Work/Lumif/env/bin:/usr/local/opt/openjdk@17/bin:/opt/homebrew/bin:/Users/safirmotiwala/.nvm/versions/node/v18.1.0/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+            },
+            "args": [
+                "@brightdata/mcp"
+            ],
+            "command": "npx",
+            "transport": "stdio"
+        }
+    },
+    "allowedTools": [
+        "deploy-mcp",
+        "delete-mcp",
+        "list-mcp",
+        "search_engine",
+        "scrape_as_markdown"
+    ]
+}
