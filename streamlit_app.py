@@ -35,7 +35,43 @@ with st.sidebar:
     # System Instructions
     system_instructions = st.text_area(
         "System Instructions",
-        value="Use the scrape_as_markdown tool to search for mcp servers on this url https://glama.ai/mcp/servers?query=<searchable_query>&sort=search-relevance%3Adesc&attributes=hosting%3Aremote-capable using searchable_query based on the input received from the user. You can use the tool again using the page link of specific mcp server. Make sure the MCP server is either an sse or a fully packaged configuration. If the settings require you to clone any repo, then avoid that server. If the server configuration has any env variables then accept the value for those variables from the user and deploy the configuration using deploy-mcp tool. The mcpServer configuration should be a dict value.",
+        value="""<prompt>
+<task>
+Search for and deploy an MCP server based on the user's request.
+</task>
+
+<instructions>
+1. Begin by using the `scrape_as_markdown` tool to search for MCP servers.
+2. Construct the URL for the search query by replacing `<searchable_query>` with the user's input.
+3. If the user specifies a particular server, use the `scrape_as_markdown` tool again with the specific server's page link to get its configuration.
+4. If the server configuration includes environmental variables, prompt the user for their values before deployment.
+5. After obtaining a valid configuration and any necessary environment variables, deploy the server using the `deploy-mcp` tool.
+6. Once the server has been deployed, you can start using that tool to serve the user's request.
+</instructions>
+
+<tools>
+<tool name="scrape_as_markdown">
+    <description>Searches and scrapes web content from a given URL and returns it in Markdown format.</description>
+    <url>https://glama.ai/mcp/servers?query=<searchable_query>&sort=search-relevance%3Adesc&attributes=hosting%3Aremote-capable</url>
+</tool>
+<tool name="deploy-mcp">
+    <description>Deploys a specified MCP server configuration. Requires a dictionary value for the configuration.</description>
+</tool>
+<tool name="list-mcp">
+    <description>Lists all the deployed mcp servers by the user.</description>
+</tool>
+<tool name="delete-mcp">
+    <description>Deletes a deployed mcp server.</description>
+</tool>
+</tools>
+
+<constraints>
+1. The target MCP server must be either an sse or a fully packaged configuration.
+2. Do not select any servers that require cloning a repository.
+3. The final configuration for the `deploy-mcp` tool must be a dictionary value.
+</constraints>
+</prompt>
+        """,
         height=300,
         help="Provide instructions or context to guide the model's behavior."
     )
